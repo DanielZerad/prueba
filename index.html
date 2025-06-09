@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icono_favi.png') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            color: #722f37 ;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        form {
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #722f37;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            padding: 10px 20px;
+            background-color: #722f37;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        .notification {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>BIENVENIDO AL SISTEMA DE GESTION DE CIGARRILLOS</h1>
+    <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner">
+    <form action="{{ url_for('importar_excel') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
+        <button type="button" onclick="document.getElementById('fileInput').click()">IMPORTAR EXCEL</button>
+        <div class="notification" id="notification">{{ get_flashed_messages()[0] }}</div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            this.form.submit();
+        });
+
+        window.onload = function() {
+            var notification = document.getElementById('notification');
+            if (notification.innerText.trim() !== "") {
+                notification.style.display = 'block';
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        }; 
+    </script>
+    </form>
+
+    
+    <!---deshabilitar registro para mostrar datos y reesctruturar la accion al modulo de importacion
+    <a href="{{ url_for('mostrar_datos') }}">Mostrar Datos</a>
+    -->
+    
+</body>
+</html>
+
