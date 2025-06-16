@@ -73,7 +73,7 @@
 </head>
 <body>
     <h1>BIENVENIDO AL SISTEMA DE GESTION DE CIGARRILLOS</h1>
-    <img src="C:\Users\DanielPérezOlvera\Downloads\programaweb\static\banner.png" alt="Banner">
+    <img src="/programaweb/static/banner.png" alt="Banner">
     <form action="{{ url_for('importar_excel') }}" method="post" enctype="multipart/form-data">
         <input type="file" name="file" id="fileInput">
         <button type="button" onclick="document.getElementById('fileInput').click()">IMPORTAR EXCEL</button>
